@@ -1,0 +1,21 @@
+---
+import { MobileMenu } from "./MobileMenu.tsx";
+type Props = {
+  styles: string;
+  classes: string;
+};
+const { styles, classes } = Astro.props;
+---
+
+<nav class="hidden sm:block">
+  <ul class={classes} style={styles}>
+    <slot />
+  </ul>
+</nav>
+<nav class="block sm:hidden">
+  <MobileMenu client:load>
+    <ul class="text-xl pt-10">
+      <slot />
+    </ul>
+  </MobileMenu>
+</nav>
