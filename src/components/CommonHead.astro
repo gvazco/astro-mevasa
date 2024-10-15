@@ -17,6 +17,8 @@ import "@fontsource/poppins/600-italic.css";
 import "@fontsource/poppins/700-italic.css";
 import "@fontsource/poppins/800-italic.css";
 import "@fontsource/poppins/900-italic.css";
+import "@fontsource/acme";
+import "@fontsource/inder";
 import "../styles/global.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
@@ -35,11 +37,18 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   body: JSON.stringify({
     query: `
 		query MetadataQuery {
-			cssVariables
+      cssVariables
       siteLogo {
         sourceUrl
       }
-		}
+      seo {
+        schema {
+          companyLogo {
+            sourceUrl
+          }
+        }
+      }
+    }
 		`,
   }),
 });
@@ -50,8 +59,8 @@ const { title, description } = Astro.props;
 <head>
   <meta charset="utf-8" />
   {
-    !!data.siteLogo?.sourceUrl && (
-      <link rel="icon" href={data.siteLogo.sourceUrl} />
+    !!data.seo?.schema?.companyLogo?.sourceUrl && (
+      <link rel="icon" href={data.seo.schema.companyLogo.sourceUrl} />
     )
   }
   <meta name="viewport" content="width=device-width" />

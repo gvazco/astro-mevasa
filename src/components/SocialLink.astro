@@ -4,6 +4,7 @@ import {
   faFacebook,
   faInstagram,
   faYoutube,
+  faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
 type Props = {
   classes: string;
@@ -18,22 +19,45 @@ const { classes, styles, service, url } = Astro.props;
 <div class={classes} style={styles}>
   {
     service === "facebook" && (
-      <a href={url} class="text-3xl hover:text-blue-500" aria-label="Facebook">
+      <a
+        href={url}
+        class="text-2xl text-white hover:text-blue-500"
+        aria-label="Facebook"
+      >
         <FontAwesomeIcon icon={faFacebook} />
       </a>
     )
   }
   {
     service === "instagram" && (
-      <a href={url} class="text-3xl hover:text-pink-500" aria-label="Instagram">
+      <a
+        href={url}
+        class="text-2xl text-white hover:text-pink-500"
+        aria-label="Instagram"
+      >
         <FontAwesomeIcon icon={faInstagram} />
       </a>
     )
   }
   {
     service === "youtube" && (
-      <a href={url} class="text-3xl hover:text-red-500" aria-label="YouTube">
+      <a
+        href={url}
+        class="text-2xl text-white hover:text-red-500"
+        aria-label="YouTube"
+      >
         <FontAwesomeIcon icon={faYoutube} />
+      </a>
+    )
+  }
+  {
+    service === "whatsapp" && (
+      <a
+        href={url}
+        class="text-2xl text-white hover:text-red-500"
+        aria-label="Whatsapp"
+      >
+        <FontAwesomeIcon icon={faWhatsapp} />
       </a>
     )
   }
