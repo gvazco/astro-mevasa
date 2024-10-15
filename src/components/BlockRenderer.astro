@@ -60,16 +60,18 @@ const { blocks, postId } = Astro.props;
           </TickItem>
         );
       case "core/image":
-        console.log(block);
+        console.log("IMAGE: ", block);
         return (
-          <Image
-            src={block.attributes?.url}
-            height={block.attributes?.height}
-            width={block.attributes?.width}
-            class={classes}
-            style={styles}
-            alt="blog image"
-          />
+          <a href={block.attributes?.href}>
+            <Image
+              src={block.attributes?.url}
+              height={block.attributes?.height}
+              width={block.attributes?.width}
+              class={classes}
+              style={styles}
+              alt="core image"
+            />
+          </a>
         );
       case "core/button":
         return (
@@ -266,4 +268,4 @@ const { blocks, postId } = Astro.props;
   })
 }
 
-<script type="module" src="/src/utils/slider.js"></script>
+<script type="module" src="/slider.js"></script>
