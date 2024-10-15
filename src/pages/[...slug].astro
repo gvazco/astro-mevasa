@@ -7,43 +7,43 @@ export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
     method: "POST",
     headers: {
-      "content-type": "application/json",
+      "Content-Type": "application/json; charset=UTF-8",
     },
     body: JSON.stringify({
       query: `
 			query AllPages {
-				pages(first: 10000){
+				pages(first: 1000){
 					nodes {
 						uri
             blocks(attributes:false)
 					}
 				}
-        properties(first: 10000) {
+        products(first: 1000) {
           nodes {
+            blocks
             uri
-            blocks(attributes:false)
           }
-        }
+        }  
 			}
 			`,
     }),
   });
   const { data } = await response.json();
-  return [...data.pages.nodes, ...data.properties.nodes]
+  return [...data.pages.nodes, ...data.products.nodes]
     .filter((page: any) => {
       let found = false;
-      const hasPropertySearch = (blocks: Block[]) => {
+      const hasProductsSearch = (blocks: Block[]) => {
         for (let block of blocks) {
-          if (block.name === "astroestates/property-search") {
+          if (block.name === "astroestates/product-search") {
             found = true;
             break;
           }
           if (block.innerBlocks) {
-            hasPropertySearch(block.innerBlocks);
+            hasProductsSearch(block.innerBlocks);
           }
         }
       };
-      hasPropertySearch(page.blocks);
+      hasProductsSearch(page.blocks);
       return !found;
     })
     .map((page: any) => ({

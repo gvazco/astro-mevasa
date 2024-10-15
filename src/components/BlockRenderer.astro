@@ -7,13 +7,15 @@ import Heading from "./Heading.astro";
 import Cover from "./Cover.astro";
 import TickItem from "./TickItem.astro";
 import SocialLink from "./SocialLink.astro";
-import PropertySearch from "./PropertySearch.astro";
+import PostSearch from "./PostSearch.astro";
+import CategorySearch from "./CategorySearch.astro";
 import NavigationSubmenu from "./NavigationSubmenu.astro";
-import PropertyDetails from "./PropertyDetails.astro";
 import NavigationLink from "./NavigationLink.astro";
 import { getBlockStyling } from "@wp-block-tools/styles";
 import type { Block } from "@wp-block-tools/styles";
 import { Image } from "astro:assets";
+import { joinClasses } from "../utils/joinClasses";
+
 type Props = {
   postId: number;
   blocks: Block[];
@@ -24,7 +26,7 @@ const { blocks, postId } = Astro.props;
 {
   blocks.map((block) => {
     const { styles, classes } = getBlockStyling(block);
-
+    // console.log(block.name);
     switch (block.name) {
       case "contact-form-7/contact-form-selector":
         return (
@@ -34,17 +36,10 @@ const { blocks, postId } = Astro.props;
             formMarkup={block.attributes?.formMarkup}
           />
         );
-      case "astroestates/property-search":
-        return <PropertySearch />;
-      case "astroestates/property-details":
-        return (
-          <PropertyDetails
-            bathrooms={block.attributes?.bathrooms}
-            bedrooms={block.attributes?.bedrooms}
-            price={block.attributes?.price}
-            postId={postId}
-          />
-        );
+      case "astroestates/post-search":
+        return <PostSearch />;
+      case "astroestates/category-search":
+        return <CategorySearch />;
       case "core/gallery":
         return (
           <div style={styles} class={classes}>
@@ -65,6 +60,7 @@ const { blocks, postId } = Astro.props;
           </TickItem>
         );
       case "core/image":
+        console.log(block);
         return (
           <Image
             src={block.attributes?.url}
@@ -72,7 +68,7 @@ const { blocks, postId } = Astro.props;
             width={block.attributes?.width}
             class={classes}
             style={styles}
-            alt=""
+            alt="blog image"
           />
         );
       case "core/button":
@@ -98,6 +94,8 @@ const { blocks, postId } = Astro.props;
           />
         );
       case "core/cover":
+        // console.log(block.attributes?.height);
+        // console.log("BLOCK", block);
         return (
           <Cover
             classes={classes}
@@ -171,6 +169,25 @@ const { blocks, postId } = Astro.props;
             />
           </div>
         );
+      case "core/separator":
+        return <hr style="border: 1px solid gray;" />;
+      case "core/list":
+        return (
+          <ul>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </ul>
+        );
+      case "core/list-item":
+        return (
+          <li
+            class={joinClasses(classes, "listStyle")}
+            style={styles}
+            set:html={block.attributes?.content}
+          />
+        );
       case "core/social-link":
         return (
           <SocialLink
@@ -181,14 +198,15 @@ const { blocks, postId } = Astro.props;
           />
         );
       case "core/site-logo":
+        // console.log(block.attributes);
         return (
           <div class={classes} style={styles}>
             <Image
-              height={block.attributes?.width || "50"}
-              width={block.attributes?.width || "50"}
+              height={block.attributes?.width || "75"}
+              width={block.attributes?.width || "250"}
               src={block.attributes?.url || ""}
               alt="Site logo"
-              widths={[50, 75, 100]}
+              widths={[50, 75, 100, 250]}
             />
           </div>
         );
@@ -199,8 +217,53 @@ const { blocks, postId } = Astro.props;
             postId={postId}
           />
         );
+      case "core/embed":
+        // console.log("EMBED", block.attributes.url);
+        return (
+          <iframe
+            width="100%"
+            height="600"
+            class={classes}
+            style={styles}
+            src={block.attributes?.url}
+            title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+          />
+        );
+      case "cb/carousel":
+        console.log(block);
+        return (
+          <div class="slider-wrapper">
+            <div class="buttons">
+              <button class="prev">‹</button>
+              <button class="next">›</button>
+            </div>
+
+            <div class="slider-container">
+              <BlockRendererInner
+                blocks={block.innerBlocks || []}
+                postId={postId}
+              />
+            </div>
+          </div>
+        );
+
+      case "cb/slide":
+        console.log(block);
+        return (
+          <div class="slider-item">
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </div>
+        );
       default:
         return null;
     }
   })
 }
+
+<script type="module" src="/src/utils/slider.js"></script>

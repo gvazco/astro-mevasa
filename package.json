@@ -13,6 +13,8 @@
     "@astrojs/react": "^3.0.7",
     "@astrojs/tailwind": "^5.0.3",
     "@astrojs/vercel": "^6.0.0",
+    "@fontsource/acme": "^5.0.21",
+    "@fontsource/inder": "^5.1.0",
     "@fontsource/poppins": "^5.0.8",
     "@fortawesome/fontawesome-svg-core": "^6.4.2",
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
