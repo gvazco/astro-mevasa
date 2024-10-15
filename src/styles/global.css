@@ -128,6 +128,12 @@
   scroll-snap-align: center;
 }
 
+@media (max-width: 575px) {
+  .slider-container .slider-item {
+    flex: 0 0 50%;
+  }
+}
+
 .wpcf7-form-control {
   @apply border border-black p-2 w-full resize-none;
 }
