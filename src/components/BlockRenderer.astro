@@ -21,6 +21,24 @@ type Props = {
   blocks: Block[];
 };
 const { blocks, postId } = Astro.props;
+
+const replacements: { [key: string]: string } = {
+  "Ã¡": "á",
+  "Ã©": "é",
+  Ã: "í",
+  "Ã³": "ó",
+  Ãº: "ú",
+  "Ã±": "ñ",
+  "Ã¼": "ü",
+  // Añade más si encuentras otros caracteres
+};
+
+function fixAccents(text: string): string {
+  return text.replace(
+    /Ã¡|Ã©|Ã|Ã³|Ãº|Ã±|Ã¼/g,
+    (match) => replacements[match] || match
+  );
+}
 ---
 
 {
@@ -74,12 +92,15 @@ const { blocks, postId } = Astro.props;
           </a>
         );
       case "core/button":
+        console.log("BUTTON: ", block);
+        let label = block.attributes?.content || "";
+        label = fixAccents(label);
         return (
           <Button
             classes={classes}
             styles={styles}
             url={block.attributes?.url}
-            content={block.attributes?.content || ""}
+            content={label}
           />
         );
       case "core/post-title":
@@ -251,7 +272,6 @@ const { blocks, postId } = Astro.props;
             </div>
           </div>
         );
-
       case "cb/slide":
         console.log(block);
         return (

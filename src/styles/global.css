@@ -5,6 +5,7 @@
 @layer base {
   body {
     font-family: "Poppins", sans-serif;
+    background-color: #e2e8f0;
   }
   h1,
   h2,
@@ -110,6 +111,7 @@
 
 .slider-wrapper {
   margin-block-start: 0.5rem !important;
+  max-width: 1200px !important;
 }
 
 .slider-container {
