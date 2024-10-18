@@ -49,7 +49,25 @@ export async function getStaticPaths() {
             blocks
 					}
 				}
+        catalogs (first: 1000){
+          nodes {
+            uri
+            blocks
+          }
+        }
+        posts (first: 1000){
+          nodes {
+            uri
+            blocks
+          }
+        }
         products(first: 1000){
+          nodes {
+            uri
+            blocks
+          }
+        }
+        projects (first: 1000){
           nodes {
             uri
             blocks
@@ -60,21 +78,36 @@ export async function getStaticPaths() {
     }),
   });
   const { data } = await response.json();
-  return [...data.pages.nodes, ...data.products.nodes]
+  return [
+    ...data.pages.nodes,
+    ...data.catalogs.nodes,
+    ...data.posts.nodes,
+    ...data.products.nodes,
+    ...data.projects.nodes,
+  ]
     .filter((page: any) => {
       let found = false;
-      const hasProductsSearch = (blocks: Block[]) => {
+      const hasModelsSearch = (blocks: Block[]) => {
         for (let block of blocks) {
           if (block.name === "astroestates/product-search") {
             found = true;
             break;
+          } else if (block.name === "astroestates/projects-search") {
+            found = true;
+            break;
+          } else if (block.name === "astroestates/posts-search") {
+            found = true;
+            break;
+          } else if (block.name === "astroestates/catalogs-search") {
+            found = true;
+            break;
           }
           if (block.innerBlocks) {
-            hasProductsSearch(block.innerBlocks);
+            hasModelsSearch(block.innerBlocks);
           }
         }
       };
-      hasProductsSearch(page.blocks);
+      hasModelsSearch(page.blocks);
       return found;
     })
     .map((page: any) => ({
