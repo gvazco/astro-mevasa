@@ -6,6 +6,7 @@ import Button from "./Button.astro";
 import Heading from "./Heading.astro";
 import Cover from "./Cover.astro";
 import TickItem from "./TickItem.astro";
+import TagsIcon from "./TagsIcon.astro";
 import SocialLink from "./SocialLink.astro";
 import PostSearch from "./PostSearch.astro";
 import CategorySearch from "./CategorySearch.astro";
@@ -77,8 +78,17 @@ function fixAccents(text: string): string {
             />
           </TickItem>
         );
+      case "astroestates/tags-icon":
+        return (
+          <TagsIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </TagsIcon>
+        );
       case "core/image":
-        console.log("IMAGE: ", block);
+        // console.log("IMAGE: ", block);
         return (
           <a href={block.attributes?.href}>
             <Image
@@ -92,7 +102,7 @@ function fixAccents(text: string): string {
           </a>
         );
       case "core/button":
-        console.log("BUTTON: ", block);
+        // console.log("BUTTON: ", block);
         let label = block.attributes?.content || "";
         label = fixAccents(label);
         return (
@@ -256,7 +266,7 @@ function fixAccents(text: string): string {
           />
         );
       case "cb/carousel":
-        console.log(block);
+        // console.log(block);
         return (
           <div class="slider-wrapper">
             <div class="buttons">
@@ -273,7 +283,7 @@ function fixAccents(text: string): string {
           </div>
         );
       case "cb/slide":
-        console.log(block);
+        // console.log(block);
         return (
           <div class="slider-item">
             <BlockRendererInner
