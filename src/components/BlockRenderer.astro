@@ -5,8 +5,17 @@ import Navigation from "./Navigation.astro";
 import Button from "./Button.astro";
 import Heading from "./Heading.astro";
 import Cover from "./Cover.astro";
+import ArrowsDownIcon from "./ArrowsDownIcon.astro";
 import TickItem from "./TickItem.astro";
+import InfoIcon from "./InfoIcon.astro";
 import TagsIcon from "./TagsIcon.astro";
+import VRulerIcon from "./VRulerIcon.astro";
+import HRulerIcon from "./HRulerIcon.astro";
+import CRulerIcon from "./CRulerIcon.astro";
+import TruckIcon from "./TruckIcon.astro";
+import ShieldIcon from "./ShieldIcon.astro";
+import WeightIcon from "./WeightIcon.astro";
+import WhatsappIcon from "./WhatsappIcon.astro";
 import SocialLink from "./SocialLink.astro";
 import PostSearch from "./PostSearch.astro";
 import CategorySearch from "./CategorySearch.astro";
@@ -78,6 +87,42 @@ function fixAccents(text: string): string {
             />
           </TickItem>
         );
+      case "astroestates/info-icon":
+        return (
+          <InfoIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </InfoIcon>
+        );
+      case "astroestates/truck-icon":
+        return (
+          <TruckIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </TruckIcon>
+        );
+      case "astroestates/shield-icon":
+        return (
+          <ShieldIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </ShieldIcon>
+        );
+      case "astroestates/weight-icon":
+        return (
+          <WeightIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </WeightIcon>
+        );
       case "astroestates/tags-icon":
         return (
           <TagsIcon>
@@ -86,6 +131,51 @@ function fixAccents(text: string): string {
               postId={postId}
             />
           </TagsIcon>
+        );
+      case "astroestates/vruler-icon":
+        return (
+          <VRulerIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </VRulerIcon>
+        );
+      case "astroestates/hruler-icon":
+        return (
+          <HRulerIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </HRulerIcon>
+        );
+      case "astroestates/arrowsdown-icon":
+        return (
+          <ArrowsDownIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </ArrowsDownIcon>
+        );
+      case "astroestates/cruler-icon":
+        return (
+          <CRulerIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </CRulerIcon>
+        );
+      case "astroestates/whatsapp-icon":
+        return (
+          <WhatsappIcon>
+            <BlockRendererInner
+              blocks={block.innerBlocks || []}
+              postId={postId}
+            />
+          </WhatsappIcon>
         );
       case "core/image":
         // console.log("IMAGE: ", block);

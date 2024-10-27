@@ -1,0 +1,13 @@
+---
+import { faRulerHorizontal } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+---
+
+<div class="flex items-center gap-3">
+  <div class="text-gray-700 text-2xl">
+    <FontAwesomeIcon icon={faRulerHorizontal} />
+  </div>
+  <div>
+    <slot />
+  </div>
+</div>
