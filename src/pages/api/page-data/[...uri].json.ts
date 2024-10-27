@@ -49,12 +49,7 @@ export async function getStaticPaths() {
             blocks
 					}
 				}
-        catalogs (first: 1000){
-          nodes {
-            uri
-            blocks
-          }
-        }
+        
         posts (first: 1000){
           nodes {
             uri
@@ -67,24 +62,14 @@ export async function getStaticPaths() {
             blocks
           }
         }
-        projects (first: 1000){
-          nodes {
-            uri
-            blocks
-          }
-        }
+        
 			}
 			`,
     }),
   });
   const { data } = await response.json();
-  return [
-    ...data.pages.nodes,
-    ...data.catalogs.nodes,
-    ...data.posts.nodes,
-    ...data.products.nodes,
-    ...data.projects.nodes,
-  ]
+  // console.log(data.pages);
+  return [...data.pages.nodes, ...data.posts.nodes, ...data.products.nodes]
     .filter((page: any) => {
       let found = false;
       const hasModelsSearch = (blocks: Block[]) => {

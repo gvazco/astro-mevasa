@@ -1,0 +1,13 @@
+---
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+---
+
+<div class="flex items-center gap-3">
+  <div class="text-gray-700 text-2xl">
+    <FontAwesomeIcon icon={faWhatsapp} />
+  </div>
+  <div>
+    <slot />
+  </div>
+</div>

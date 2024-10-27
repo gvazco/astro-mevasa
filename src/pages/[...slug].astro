@@ -18,32 +18,48 @@ export async function getStaticPaths() {
             blocks(attributes:false)
 					}
 				}
-        products(first: 1000) {
+        posts (first: 1000){
           nodes {
-            blocks
             uri
+            blocks
           }
-        }  
+        }
+        products(first: 1000){
+          nodes {
+            uri
+            blocks
+          }
+        }
 			}
 			`,
     }),
   });
   const { data } = await response.json();
-  return [...data.pages.nodes, ...data.products.nodes]
+  // console.log(data.pages);
+  return [...data.pages.nodes, ...data.posts.nodes, ...data.products.nodes]
     .filter((page: any) => {
       let found = false;
-      const hasProductsSearch = (blocks: Block[]) => {
+      const hasModelsSearch = (blocks: Block[]) => {
         for (let block of blocks) {
           if (block.name === "astroestates/product-search") {
             found = true;
             break;
+          } else if (block.name === "astroestates/projects-search") {
+            found = true;
+            break;
+          } else if (block.name === "astroestates/posts-search") {
+            found = true;
+            break;
+          } else if (block.name === "astroestates/catalogs-search") {
+            found = true;
+            break;
           }
           if (block.innerBlocks) {
-            hasProductsSearch(block.innerBlocks);
+            hasModelsSearch(block.innerBlocks);
           }
         }
       };
-      hasProductsSearch(page.blocks);
+      hasModelsSearch(page.blocks);
       return !found;
     })
     .map((page: any) => ({
@@ -77,7 +93,7 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   }),
 });
 const { data } = await response.json();
-//const { blocks, seo } = Astro.props;
+// const { blocks, seo } = Astro.props;
 const blocks = (data.nodeByUri?.blocks || []) as Block[];
 const seo = data.nodeByUri?.seo;
 const postId = data.nodeByUri?.databaseId;
