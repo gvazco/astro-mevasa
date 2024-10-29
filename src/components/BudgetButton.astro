@@ -1,0 +1,24 @@
+---
+type Props = {
+  slug: string;
+  titulo: string;
+  postId: number;
+  image: string;
+};
+const { slug, titulo, postId, image } = Astro.props;
+---
+
+<div class="budget max-w-sm mx-auto w-full pr-1">
+  <button
+    id={slug}
+    class={`w-full budget__button ${slug}`}
+    data-postId={postId}
+    data-titulo={titulo}
+    data-slug={slug}
+    data-image={image}
+  >
+    Añadir a cotizador
+  </button>
+</div>
+
+<script type="module" src="/js/addCart.js"></script>

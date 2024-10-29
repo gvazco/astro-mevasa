@@ -136,6 +136,48 @@
   }
 }
 
+.whatsapp {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.whatsapp__button {
+  border-width: 2px;
+  border-radius: 0px;
+  border-color: rgb(15, 23, 42);
+  background-color: rgb(20, 184, 166);
+  color: rgb(15, 23, 42);
+  padding: 0.6rem 0.5rem;
+  min-width: 1px;
+  font-family: "Inder", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
+.budget {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.budget__button {
+  border-width: 2px;
+  border-radius: 0px;
+  border-color: rgb(15, 23, 42);
+  background-color: rgb(203, 213, 225);
+  color: rgb(15, 23, 42);
+  padding: 0.6rem 0.5rem;
+  min-width: 1px;
+  font-family: "Inder", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
 .wpcf7-form-control {
   @apply border border-black p-2 w-full resize-none;
 }
