@@ -1,5 +1,6 @@
 ---
 import ContactForm7 from "./ContactForm7.tsx";
+import { BudgetButton } from "./BudgetButton.tsx";
 import BlockRendererInner from "./BlockRenderer.astro";
 import Navigation from "./Navigation.astro";
 import Button from "./Button.astro";
@@ -17,7 +18,6 @@ import ShieldIcon from "./ShieldIcon.astro";
 import WeightIcon from "./WeightIcon.astro";
 import WhatsappIcon from "./WhatsappIcon.astro";
 import WhatsappButton from "./WhatsappButton.astro";
-import BudgetButton from "./BudgetButton.astro";
 import SocialLink from "./SocialLink.astro";
 import PostSearch from "./PostSearch.astro";
 import CategorySearch from "./CategorySearch.astro";
@@ -192,9 +192,9 @@ function fixAccents(text: string): string {
       case "astroestates/budget-button":
         return (
           <BudgetButton
+            client:only="react"
             slug={block.attributes?.slug}
             titulo={block.attributes?.titulo}
-            image={block.attributes?.image}
             postId={postId}
           />
         );
