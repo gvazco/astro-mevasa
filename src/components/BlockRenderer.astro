@@ -16,6 +16,8 @@ import TruckIcon from "./TruckIcon.astro";
 import ShieldIcon from "./ShieldIcon.astro";
 import WeightIcon from "./WeightIcon.astro";
 import WhatsappIcon from "./WhatsappIcon.astro";
+import WhatsappButton from "./WhatsappButton.astro";
+import BudgetButton from "./BudgetButton.astro";
 import SocialLink from "./SocialLink.astro";
 import PostSearch from "./PostSearch.astro";
 import CategorySearch from "./CategorySearch.astro";
@@ -31,6 +33,8 @@ type Props = {
   blocks: Block[];
 };
 const { blocks, postId } = Astro.props;
+
+// console.log(Astro.props);
 
 const replacements: { [key: string]: string } = {
   "Ã¡": "á",
@@ -176,6 +180,23 @@ function fixAccents(text: string): string {
               postId={postId}
             />
           </WhatsappIcon>
+        );
+      case "astroestates/whatsapp-button":
+        return (
+          <WhatsappButton
+            slug={block.attributes?.slug}
+            whatsapp={block.attributes?.whatsapp}
+            postId={postId}
+          />
+        );
+      case "astroestates/budget-button":
+        return (
+          <BudgetButton
+            slug={block.attributes?.slug}
+            titulo={block.attributes?.titulo}
+            image={block.attributes?.image}
+            postId={postId}
+          />
         );
       case "core/image":
         // console.log("IMAGE: ", block);
@@ -388,4 +409,4 @@ function fixAccents(text: string): string {
   })
 }
 
-<script type="module" src="/slider.js"></script>
+<script type="module" src="/js/slider.js"></script>

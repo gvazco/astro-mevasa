@@ -1,0 +1,20 @@
+---
+type Props = {
+  slug: string;
+  whatsapp: string;
+  postId: number;
+};
+
+const { slug, whatsapp, postId } = Astro.props;
+---
+
+<div class="whatsapp max-w-sm mx-auto w-full pl-1">
+  <a
+    href={whatsapp}
+    class="whatsapp__button-link w-full flex text-md justify-center gap-8"
+  >
+    <button id={slug} class={`w-full whatsapp__button ${slug}`}
+      >Ver en Whatsapp</button
+    >
+  </a>
+</div>
