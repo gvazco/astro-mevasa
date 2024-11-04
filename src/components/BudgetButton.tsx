@@ -47,12 +47,12 @@ export const BudgetButton = ({ slug, titulo, postId }: Props) => {
     <div className="budget max-w-sm mx-auto w-full pr-1">
       <button
         id={slug}
-        className={`budget__button ${slug}`}
+        className={`w-full budget__button ${slug}`}
         data-postid={postId} // minúsculas
         data-titulo={titulo}
         data-slug={slug}
       >
-        Añadir a cotizador
+        Ver en cotizador
       </button>
     </div>
   );
