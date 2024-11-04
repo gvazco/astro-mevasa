@@ -55,35 +55,28 @@ export async function getStaticPaths() {
             uri
             blocks
           }
-        }
-        products(first: 1000){
-          nodes {
-            uri
-            blocks
-          }
-        }
-        
+        }  
 			}
 			`,
     }),
   });
   const { data } = await response.json();
   // console.log(data.pages);
-  return [...data.pages.nodes, ...data.posts.nodes, ...data.products.nodes]
+  return [...data.pages.nodes, ...data.posts.nodes]
     .filter((page: any) => {
       let found = false;
       const hasModelsSearch = (blocks: Block[]) => {
         for (let block of blocks) {
-          if (block.name === "astroestates/product-search") {
+          if (block.name === "astroestates/posts-search") {
             found = true;
             break;
-          } else if (block.name === "astroestates/projects-search") {
+          } else if (block.name === "astroestates/catalog-search") {
             found = true;
             break;
-          } else if (block.name === "astroestates/posts-search") {
+          } else if (block.name === "astroestates/documentation-search") {
             found = true;
             break;
-          } else if (block.name === "astroestates/catalogs-search") {
+          } else if (block.name === "astroestates/briefcase-search") {
             found = true;
             break;
           }

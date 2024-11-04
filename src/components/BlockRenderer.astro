@@ -20,7 +20,13 @@ import WhatsappIcon from "./WhatsappIcon.astro";
 import WhatsappButton from "./WhatsappButton.astro";
 import SocialLink from "./SocialLink.astro";
 import PostSearch from "./PostSearch.astro";
+import CatalogSearch from "./CatalogSearch.astro";
 import CategorySearch from "./CategorySearch.astro";
+import DocumentationSearch from "./DocumentationSearch.astro";
+import BriefcaseSearch from "./BriefcaseSearch.astro";
+import CategoryCatalog from "./CategoryCatalog.astro";
+import CategoryDocumentation from "./CategoryDocumentation.astro";
+import CategoryBriefcase from "./CategoryBriefcase.astro";
 import NavigationSubmenu from "./NavigationSubmenu.astro";
 import NavigationLink from "./NavigationLink.astro";
 import { getBlockStyling } from "@wp-block-tools/styles";
@@ -72,6 +78,18 @@ function fixAccents(text: string): string {
         return <PostSearch />;
       case "astroestates/category-search":
         return <CategorySearch />;
+      case "astroestates/catalog-search":
+        return <CatalogSearch />;
+      case "astroestates/category-catalog":
+        return <CategoryCatalog />;
+      case "astroestates/documentation-search":
+        return <DocumentationSearch />;
+      case "astroestates/category-documentation":
+        return <CategoryDocumentation />;
+      case "astroestates/briefcase-search":
+        return <BriefcaseSearch />;
+      case "astroestates/category-briefcase":
+        return <CategoryBriefcase />;
       case "core/gallery":
         return (
           <div style={styles} class={classes}>

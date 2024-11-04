@@ -1,0 +1,85 @@
+---
+// import { faBed, faBath } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Image } from "astro:assets";
+
+const { searchParams } = Astro.url;
+const { pathname } = Astro.url;
+const url = pathname;
+const cleanedUrl = url.replace(/^\/documentacion\//, "").replace(/^\//, "");
+const page = searchParams.get("page");
+
+searchParams.delete("page");
+const searchParamsString = searchParams.toString();
+
+const response = await fetch(`${Astro.url.origin}/api/posts.json`);
+const { posts } = await response.json();
+
+let filteredPosts = posts;
+
+filteredPosts = filteredPosts.filter((post: any) => {
+  return post.uri.includes(`${cleanedUrl}`);
+});
+
+const pageSize = 3;
+const totalPages = Math.ceil(filteredPosts.length / pageSize);
+const pageNumber = page ? (isNaN(parseInt(page)) ? 1 : parseInt(page)) : 1;
+const offset = (pageNumber - 1) * pageSize;
+filteredPosts = filteredPosts.slice(offset, offset + pageSize);
+---
+
+<div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+  {
+    filteredPosts.map((post: any) => (
+      <a href={post.uri} class="border border-zinc-200 hover:bg-zinc-100">
+        {!!post.featuredImage && (
+          <Image
+            height={post.featuredImage.node.mediaDetails.height}
+            width={post.featuredImage.node.mediaDetails.width}
+            src={post.featuredImage.node.sourceUrl}
+            alt=""
+            class="h-40 w-full object-cover"
+          />
+        )}
+        <h3
+          class="pt-2 px-2 postCardTitle"
+          transition:name={`post-title-${post.databaseId}`}
+        >
+          <strong>{post.title}</strong>
+        </h3>
+
+        <div class="flex px-2 flex-col gap-4">
+          <div transition:name={`excerpt-${post.databaseId}`}>
+            <div class="text-ellipsis" set:html={post.excerpt} />
+          </div>
+
+          <div transition:name={`tags-${post.databaseId}`}>
+            {post?.tags?.nodes.map((tag: any) => (
+              <span class="text-sm">#{tag?.name}, </span>
+            ))}
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</div>
+<div class="flex gap-2 justify-center">
+  {
+    Array.from({ length: totalPages }).map((_, i) => (
+      <a
+        class={`block px-3 py-2 rounded-md ${
+          i + 1 === pageNumber
+            ? `bg-event-horizon text-white`
+            : `bg-zinc-200 hover:bg-zinc-300`
+        }`}
+        href={`?${
+          searchParamsString
+            ? `${searchParamsString}&page=${i + 1}`
+            : `page=${i + 1}`
+        }`}
+      >
+        {i + 1}
+      </a>
+    ))
+  }
+</div>

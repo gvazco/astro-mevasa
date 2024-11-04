@@ -1,0 +1,127 @@
+---
+import { Image } from "astro:assets";
+
+const { searchParams } = Astro.url;
+const title = searchParams.get("title");
+const category = searchParams.get("category");
+const page = searchParams.get("page");
+searchParams.delete("page");
+const searchParamsString = searchParams.toString();
+
+const response = await fetch(`${Astro.url.origin}/api/posts.json`);
+const { posts } = await response.json();
+
+let filteredPosts = posts;
+
+if (title) {
+  filteredPosts = filteredPosts.filter((post: any) => {
+    return post.title.includes(title);
+  });
+}
+
+if (category) {
+  filteredPosts = filteredPosts.filter((post: any) => {
+    return post.uri.includes(`${category}`);
+  });
+}
+
+const pageSize = 3;
+const totalPages = Math.ceil(filteredPosts.length / pageSize);
+const pageNumber = page ? (isNaN(parseInt(page)) ? 1 : parseInt(page)) : 1;
+const offset = (pageNumber - 1) * pageSize;
+filteredPosts = filteredPosts.slice(offset, offset + pageSize);
+---
+
+<form method="GET">
+  <fieldset class="pb-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+    <div>
+      <label><strong>Titulo</strong></label>
+      <input
+        value={title}
+        type="text"
+        name="title"
+        class="w-full py-1 px-2 border border-event-horizon rounded-sm"
+      />
+    </div>
+
+    <div>
+      <label><strong>Categoría</strong></label>
+      <select
+        id="category-select"
+        name="category"
+        class="w-full py-1 px-2 border border-event-horizon rounded-sm"
+      >
+        <option value="">--Por favor, elija una opción--</option>
+        <option value="aislantes">Aislantes</option>
+        <option value="fijacion">Fijación</option>
+        <option value="lamina-acanalada">Lámina Acanalada</option>
+        <option value="lamina-lisa">Lámina Lisa</option>
+        <option value="lamina-ondulada">Lámina Ondulda</option>
+        <option value="lamina-translucida">Lámina Translucida</option>
+        <option value="panel-aislante">Panel Aislante</option>
+        <option value="selladores">Selladores</option>
+      </select>
+    </div>
+  </fieldset>
+  <button
+    type="submit"
+    class="w-full text-white inline-block uppercase font-bold tracking-[1.3px] bg-event-horizon py-3 px-6"
+  >
+    Buscar
+  </button>
+</form>
+<div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+  {
+    filteredPosts.map((post: any) => (
+      <a href={post.uri} class="border border-zinc-200 hover:bg-zinc-100">
+        {!!post.featuredImage && (
+          <Image
+            height={post.featuredImage.node.mediaDetails.height}
+            width={post.featuredImage.node.mediaDetails.width}
+            src={post.featuredImage.node.sourceUrl}
+            alt=""
+            class="h-40 w-full object-cover"
+          />
+        )}
+        <h3
+          class="pt-2 px-2 postCardTitle"
+          transition:name={`post-title-${post.databaseId}`}
+        >
+          <strong>{post.title}</strong>
+        </h3>
+
+        <div class="flex px-2 flex-col gap-4">
+          <div transition:name={`excerpt-${post.databaseId}`}>
+            <div class="text-ellipsis" set:html={post.excerpt} />
+          </div>
+
+          <div transition:name={`tags-${post.databaseId}`}>
+            {/* {post.tags.nodes.map((tag: any) => (
+              <span class="text-sm">#{tag.name}, </span>
+            ))} */}
+          </div>
+        </div>
+      </a>
+    ))
+  }
+</div>
+<div class="flex gap-2 justify-center">
+  {
+    Array.from({ length: totalPages }).map((_, i) => (
+      <a
+        class={`block px-3 py-2 rounded-md ${
+          i + 1 === pageNumber
+            ? `bg-event-horizon text-white`
+            : `bg-zinc-200 hover:bg-zinc-300`
+        }`}
+        href={`?${
+          searchParamsString
+            ? `${searchParamsString}&page=${i + 1}`
+            : `page=${i + 1}`
+        }`}
+      >
+        {i + 1}
+      </a>
+    ))
+  }
+</div>
