@@ -32,6 +32,7 @@ export async function getStaticPaths() {
   // console.log(data.pages);
   return [...data.pages.nodes, ...data.posts.nodes]
     .filter((page: any) => {
+      // console.log(data.posts.nodes);
       let found = false;
       const hasModelsSearch = (blocks: Block[]) => {
         for (let block of blocks) {
