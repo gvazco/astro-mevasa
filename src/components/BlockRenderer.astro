@@ -92,7 +92,7 @@ function fixAccents(text: string): string {
         return <CategoryBriefcase />;
       case "core/gallery":
         return (
-          <div style={styles} class={classes}>
+          <div style={styles} class={joinClasses(classes, "galleryStyle")}>
             {(block.innerBlocks || []).map((innerBlock) => (
               <div>
                 <BlockRendererInner blocks={[innerBlock]} postId={postId} />
@@ -219,7 +219,7 @@ function fixAccents(text: string): string {
       case "core/image":
         // console.log("IMAGE: ", block);
         return (
-          <a href={block.attributes?.href}>
+          <a href={block.attributes?.href} target="_blank">
             <Image
               src={block.attributes?.url}
               height={block.attributes?.height}
