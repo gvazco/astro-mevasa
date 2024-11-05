@@ -67,10 +67,7 @@ export async function getStaticPaths() {
       let found = false;
       const hasModelsSearch = (blocks: Block[]) => {
         for (let block of blocks) {
-          if (block.name === "astroestates/posts-search") {
-            found = true;
-            break;
-          } else if (block.name === "astroestates/catalog-search") {
+          if (block.name === "astroestates/catalog-search") {
             found = true;
             break;
           } else if (block.name === "astroestates/documentation-search") {
