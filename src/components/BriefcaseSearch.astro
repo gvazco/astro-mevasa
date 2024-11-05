@@ -1,7 +1,7 @@
 ---
 import { Image } from "astro:assets";
 
-const { searchParams } = Astro.url;
+const { searchParams, pathname } = Astro.url;
 const title = searchParams.get("title");
 const category = searchParams.get("category");
 const page = searchParams.get("page");
@@ -12,6 +12,9 @@ const response = await fetch(`${Astro.url.origin}/api/posts.json`);
 const { posts } = await response.json();
 
 let filteredPosts = posts;
+filteredPosts = filteredPosts.filter((post: any) => {
+  return post.uri.includes(`${pathname}`);
+});
 
 if (title) {
   filteredPosts = filteredPosts.filter((post: any) => {

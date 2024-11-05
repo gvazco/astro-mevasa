@@ -1,7 +1,8 @@
 ---
 import { Image } from "astro:assets";
 
-const { searchParams } = Astro.url;
+const { searchParams, pathname } = Astro.url;
+// console.log("PATHNAME: ", pathname);
 const title = searchParams.get("title");
 const category = searchParams.get("category");
 const page = searchParams.get("page");
@@ -13,17 +14,21 @@ const { posts } = await response.json();
 
 let filteredPosts = posts;
 
-if (title) {
-  filteredPosts = filteredPosts.filter((post: any) => {
-    return post.title.includes(title);
-  });
-}
+// filteredPosts = filteredPosts.filter((post: any) => {
+//   return post.uri.includes(`${pathname}`);
+// });
 
-if (category) {
-  filteredPosts = filteredPosts.filter((post: any) => {
-    return post.uri.includes(`${category}`);
-  });
-}
+// if (title) {
+//   filteredPosts = filteredPosts.filter((post: any) => {
+//     return post.title.includes(title);
+//   });
+// }
+
+// if (category) {
+//   filteredPosts = filteredPosts.filter((post: any) => {
+//     return post.uri.includes(`${category}`);
+//   });
+// }
 
 const pageSize = 3;
 const totalPages = Math.ceil(filteredPosts.length / pageSize);
