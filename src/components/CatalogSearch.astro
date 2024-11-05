@@ -14,21 +14,21 @@ const { posts } = await response.json();
 
 let filteredPosts = posts;
 
-// filteredPosts = filteredPosts.filter((post: any) => {
-//   return post.uri.includes(`${pathname}`);
-// });
+filteredPosts = filteredPosts.filter((post: any) => {
+  return post.uri.includes(`${pathname}`);
+});
 
-// if (title) {
-//   filteredPosts = filteredPosts.filter((post: any) => {
-//     return post.title.includes(title);
-//   });
-// }
+if (title) {
+  filteredPosts = filteredPosts.filter((post: any) => {
+    return post.title.includes(title);
+  });
+}
 
-// if (category) {
-//   filteredPosts = filteredPosts.filter((post: any) => {
-//     return post.uri.includes(`${category}`);
-//   });
-// }
+if (category) {
+  filteredPosts = filteredPosts.filter((post: any) => {
+    return post.uri.includes(`${category}`);
+  });
+}
 
 const pageSize = 3;
 const totalPages = Math.ceil(filteredPosts.length / pageSize);
