@@ -75,7 +75,7 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
     filteredPosts.map((post: any) => (
       <a
         href={post.uri}
-        class="border border-slate-600 hover:bg-slate-200 flex bg-slate-100"
+        class="border flex-none sm:flex border-slate-600 hover:bg-slate-200  bg-slate-100"
       >
         {!!post.featuredImage && (
           <Image
@@ -87,15 +87,15 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
           />
         )}
 
-        <div class="flex-row px-2">
+        <div class="flex-col sm:flex-row p-2">
           <h3
-            class="pt-2 px-2 postCardTitle"
+            class="sm:px-2 postCardTitle"
             transition:name={`post-title-${post.databaseId}`}
           >
             <strong>{post.title}</strong>
           </h3>
 
-          <div class="flex px-2 flex-col gap-4">
+          <div class="flex sm:px-2 flex-col gap-4">
             <div transition:name={`excerpt-${post.databaseId}`}>
               <div class="text-ellipsis" set:html={post.excerpt} />
             </div>
