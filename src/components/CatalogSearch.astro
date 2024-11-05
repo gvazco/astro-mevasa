@@ -30,7 +30,7 @@ if (category) {
   });
 }
 
-const pageSize = 3;
+const pageSize = 6;
 const totalPages = Math.ceil(filteredPosts.length / pageSize);
 const pageNumber = page ? (isNaN(parseInt(page)) ? 1 : parseInt(page)) : 1;
 const offset = (pageNumber - 1) * pageSize;
@@ -64,6 +64,7 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
         <option value="lamina-ondulada">Lámina Ondulda</option>
         <option value="lamina-translucida">Lámina Translucida</option>
         <option value="panel-aislante">Panel Aislante</option>
+        <option value="remates-de-lamina">Remates de Lámina</option>
         <option value="selladores">Selladores</option>
       </select>
     </div>
@@ -78,14 +79,17 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
 <div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
   {
     filteredPosts.map((post: any) => (
-      <a href={post.uri} class="border border-zinc-200 hover:bg-zinc-100">
+      <a
+        href={post.uri}
+        class="border border-slate-600 hover:bg-slate-200 bg-slate-100"
+      >
         {!!post.featuredImage && (
           <Image
             height={post.featuredImage.node.mediaDetails.height}
             width={post.featuredImage.node.mediaDetails.width}
             src={post.featuredImage.node.sourceUrl}
             alt=""
-            class="h-40 w-full object-cover"
+            class="h-fit w-full object-cover"
           />
         )}
         <h3
