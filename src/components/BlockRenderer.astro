@@ -219,7 +219,7 @@ function fixAccents(text: string): string {
       case "core/image":
         // console.log("IMAGE: ", block);
         return (
-          <a href={block.attributes?.href}>
+          <a href={block.attributes?.href} target="_blank">
             <Image
               src={block.attributes?.url}
               height={block.attributes?.height}
