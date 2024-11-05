@@ -178,6 +178,14 @@
   text-transform: uppercase;
 }
 
+.galleryStyle {
+  margin: 0.5rem -0.25rem !important;
+}
+
+.galleryStyle div {
+  padding: calc(var(--block-gap) / 4);
+}
+
 .wpcf7-form-control {
   @apply border border-black p-2 w-full resize-none;
 }
