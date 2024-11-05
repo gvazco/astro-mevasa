@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 const { searchParams } = Astro.url;
 const { pathname } = Astro.url;
 const url = pathname;
-const cleanedUrl = url.replace(/^\/catalogos\//, "").replace(/^\//, "");
+// const cleanedUrl = url.replace(/^\/catalogos\//, "").replace(/^\//, "");
 const page = searchParams.get("page");
 
 searchParams.delete("page");
@@ -18,7 +18,7 @@ const { posts } = await response.json();
 let filteredPosts = posts;
 
 filteredPosts = filteredPosts.filter((post: any) => {
-  return post.uri.includes(`${cleanedUrl}`);
+  return post.uri.includes(`${url}`);
 });
 
 const pageSize = 3;
