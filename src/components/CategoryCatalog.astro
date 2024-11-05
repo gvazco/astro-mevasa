@@ -6,7 +6,7 @@ import { Image } from "astro:assets";
 const { searchParams } = Astro.url;
 const { pathname } = Astro.url;
 const url = pathname;
-// const cleanedUrl = url.replace(/^\/catalogos\//, "").replace(/^\//, "");
+const cleanedUrl = url.replace(/^\/blog\//, "").replace(/^\//, "");
 const page = searchParams.get("page");
 
 searchParams.delete("page");
@@ -32,11 +32,11 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
   {
     filteredPosts.map((post: any) => (
       <a href={post?.uri} class="border border-zinc-200 hover:bg-zinc-100">
-        {!!post?.featuredImage && (
+        {!!post.featuredImage && (
           <Image
-            height={post?.featuredImage?.node?.mediaDetails?.height}
-            width={post?.featuredImage?.node?.mediaDetails?.width}
-            src={post?.featuredImage?.node?.sourceUrl}
+            height={post?.featuredImage.node.mediaDetails.height}
+            width={post?.featuredImage.node.mediaDetails.width}
+            src={post?.featuredImage.node.sourceUrl}
             alt=""
             class="h-40 w-full object-cover"
           />
@@ -45,7 +45,7 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
           class="pt-2 px-2 postCardTitle"
           transition:name={`post-title-${post?.databaseId}`}
         >
-          <strong>{post.title}</strong>
+          <strong>{post?.title}</strong>
         </h3>
 
         <div class="flex px-2 flex-col gap-4">
@@ -55,7 +55,7 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
 
           <div transition:name={`tags-${post?.databaseId}`}>
             {post?.tags?.nodes.map((tag: any) => (
-              <span class="text-sm">#{tag?.name}, </span>
+              <span class="text-sm">#{tag.name}, </span>
             ))}
           </div>
         </div>
