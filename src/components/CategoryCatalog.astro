@@ -7,7 +7,7 @@ const { searchParams } = Astro.url;
 const { pathname } = Astro.url;
 const url = pathname;
 const cleanedUrl = url.replace(/^\/catalogos\//, "").replace(/^\//, "");
-console.log("CLEANEADURL: ", cleanedUrl);
+// console.log("CLEANEDURL: ", cleanedUrl);
 const page = searchParams.get("page");
 
 searchParams.delete("page");
