@@ -79,6 +79,7 @@
 
 /* Estilo de la pista del scrollbar */
 .slider-container::-webkit-scrollbar-track {
+  cursor: grab;
   background: -webkit-gradient(
     linear,
     left top,
@@ -93,6 +94,7 @@
 
 /* Estilo del pulgar del scrollbar */
 .slider-container::-webkit-scrollbar-thumb {
+  cursor: grab;
   background: -webkit-gradient(
     linear,
     left top,
@@ -106,6 +108,7 @@
 
 /* Estilo del pulgar al pasar el mouse por encima */
 .slider-container::-webkit-scrollbar-thumb:hover {
+  cursor: grab;
   background: -webkit-gradient(
     linear,
     left top,
@@ -166,8 +169,8 @@
 
 .slider-container .slider-item {
   -webkit-box-flex: 0;
-  -ms-flex: 0 0 33.33%;
-  flex: 0 0 33.33%;
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
   margin: 0.5rem;
   width: 100%;
   -o-object-fit: cover;
@@ -178,8 +181,8 @@
 @media (max-width: 575px) {
   .slider-container .slider-item {
     -webkit-box-flex: 0;
-    -ms-flex: 0 0 50%;
-    flex: 0 0 50%;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
   }
 }
 
