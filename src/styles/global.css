@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v8.4.14,
+* Autoprefixer: v10.4.7
+* Browsers: last 4 version
+*/
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -52,6 +59,7 @@
 }
 
 .slider-container {
+  -webkit-margin-before: 0.3rem !important;
   margin-block-start: 0.3rem !important;
 }
 
@@ -71,6 +79,14 @@
 
 /* Estilo de la pista del scrollbar */
 .slider-container::-webkit-scrollbar-track {
+  cursor: grab;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#14b8a6),
+    to(#0d9488)
+  );
   background: linear-gradient(to right, #14b8a6, #0d9488);
   border-radius: 6px;
   margin-bottom: 1rem;
@@ -78,19 +94,44 @@
 
 /* Estilo del pulgar del scrollbar */
 .slider-container::-webkit-scrollbar-thumb {
+  cursor: grab;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#eb9306),
+    to(#a56e14)
+  );
   background: linear-gradient(to right, #eb9306, #a56e14);
   border-radius: 6px;
 }
 
 /* Estilo del pulgar al pasar el mouse por encima */
 .slider-container::-webkit-scrollbar-thumb:hover {
+  cursor: grab;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#a56e14),
+    to(#eb9306)
+  );
   background: linear-gradient(to right, #a56e14, #eb9306);
 }
 
 .buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: row;
   flex-direction: row;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
   justify-content: end;
+  -webkit-column-gap: 0.5rem;
+  -moz-column-gap: 0.5rem;
   column-gap: 0.5rem;
 }
 
@@ -110,35 +151,48 @@
 }
 
 .slider-wrapper {
+  -webkit-margin-before: 0.5rem !important;
   margin-block-start: 0.5rem !important;
   max-width: 1200px !important;
 }
 
 .slider-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   height: 100%;
   overflow-x: scroll;
+  -ms-scroll-snap-type: x mandatory;
   scroll-snap-type: x mandatory;
 }
 
 .slider-container .slider-item {
-  flex: 0 0 33.33%;
+  -webkit-box-flex: 0;
+  -ms-flex: 0 0 25%;
+  flex: 0 0 25%;
   margin: 0.5rem;
   width: 100%;
+  -o-object-fit: cover;
   object-fit: cover;
   scroll-snap-align: center;
 }
 
 @media (max-width: 575px) {
   .slider-container .slider-item {
-    flex: 0 0 50%;
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 60%;
+    flex: 0 0 60%;
   }
 }
 
 .whatsapp {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 10px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
@@ -158,8 +212,12 @@
 }
 
 .budget {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   gap: 10px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
   align-items: center;
 }
 
