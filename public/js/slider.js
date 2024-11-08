@@ -34,21 +34,21 @@ if (typeof window !== "undefined") {
         sliderContainer.scrollLeft = scrollLeft - walk;
       });
 
-      prevButtons[index].addEventListener("click", () => {
-        sliderContainer.scrollBy({
-          top: 0,
-          left: -sliderContainer.clientWidth / 2, // Ajusta según el tamaño del item
-          behavior: "smooth",
-        });
-      });
+      // prevButtons[index].addEventListener("click", () => {
+      //   sliderContainer.scrollBy({
+      //     top: 0,
+      //     left: -sliderContainer.clientWidth / 2, // Ajusta según el tamaño del item
+      //     behavior: "smooth",
+      //   });
+      // });
 
-      nextButtons[index].addEventListener("click", () => {
-        sliderContainer.scrollBy({
-          top: 0,
-          left: sliderContainer.clientWidth / 2, // Ajusta según el tamaño del item
-          behavior: "smooth",
-        });
-      });
+      // nextButtons[index].addEventListener("click", () => {
+      //   sliderContainer.scrollBy({
+      //     top: 0,
+      //     left: sliderContainer.clientWidth / 2, // Ajusta según el tamaño del item
+      //     behavior: "smooth",
+      //   });
+      // });
     });
   });
 }
