@@ -1,8 +1,8 @@
 if (typeof window !== "undefined") {
   document.addEventListener("DOMContentLoaded", () => {
     const sliderContainers = document.querySelectorAll(".slider-container");
-    const prevButtons = document.querySelectorAll(".prev");
-    const nextButtons = document.querySelectorAll(".next");
+    // const prevButtons = document.querySelectorAll(".prev");
+    // const nextButtons = document.querySelectorAll(".next");
 
     sliderContainers.forEach((sliderContainer, index) => {
       let isDown = false;
