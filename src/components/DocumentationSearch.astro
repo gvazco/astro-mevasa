@@ -73,35 +73,34 @@ filteredPosts = filteredPosts.slice(offset, offset + pageSize);
     Buscar
   </button>
 </form>
-<div class="grid gap-2 grid-cols-1 sm:grid-cols-2 md:grid-cols-3">
+<div class="grid gap-2 grid-cols-1">
   {
     filteredPosts.map((post: any) => (
-      <a href={post.uri} class="border border-zinc-200 hover:bg-zinc-100">
+      <a
+        href={post.uri}
+        class="border flex-none sm:flex border-slate-600 hover:bg-slate-200  bg-slate-100"
+      >
         {!!post.featuredImage && (
           <Image
             height={post.featuredImage.node.mediaDetails.height}
             width={post.featuredImage.node.mediaDetails.width}
             src={post.featuredImage.node.sourceUrl}
             alt=""
-            class="h-40 w-full object-cover"
+            class="h-40 md:min-w-60 md:max-w-60 lg:min-w-72 lg:max-w-72 object-cover self-center"
           />
         )}
-        <h3
-          class="pt-2 px-2 postCardTitle"
-          transition:name={`post-title-${post.databaseId}`}
-        >
-          <strong>{post.title}</strong>
-        </h3>
+        <div class="flex-col sm:flex-row p-2">
+          <h3
+            class="sm:px-2 postCardTitle"
+            transition:name={`post-title-${post.databaseId}`}
+          >
+            <strong>{post.title}</strong>
+          </h3>
 
-        <div class="flex px-2 flex-col gap-4">
-          <div transition:name={`excerpt-${post.databaseId}`}>
-            <div class="text-ellipsis" set:html={post.excerpt} />
-          </div>
-
-          <div transition:name={`tags-${post.databaseId}`}>
-            {/* {post.tags.nodes.map((tag: any) => (
-              <span class="text-sm">#{tag.name}, </span>
-            ))} */}
+          <div class="flex sm:px-2 flex-col gap-4">
+            <div transition:name={`excerpt-${post.databaseId}`}>
+              <div class="text-ellipsis" set:html={post.excerpt} />
+            </div>
           </div>
         </div>
       </a>
