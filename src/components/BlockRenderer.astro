@@ -366,13 +366,15 @@ function fixAccents(text: string): string {
         // console.log(block.attributes);
         return (
           <div class={classes} style={styles}>
-            <Image
-              height={block.attributes?.width || "75"}
-              width={block.attributes?.width || "250"}
-              src={block.attributes?.url || ""}
-              alt="Site logo"
-              widths={[50, 75, 100, 250]}
-            />
+            <a href="/">
+              <Image
+                height={block.attributes?.width || "75"}
+                width={block.attributes?.width || "250"}
+                src={block.attributes?.url || ""}
+                alt="Site logo"
+                widths={[50, 75, 100, 250]}
+              />
+            </a>
           </div>
         );
       case "core/template-part":
