@@ -1,4 +1,7 @@
 ---
+import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 type Props = {
   slug: string;
   whatsapp: string;
@@ -14,7 +17,7 @@ const { slug, whatsapp, postId } = Astro.props;
     class="whatsapp__button-link w-full flex text-md justify-center gap-8"
   >
     <button id={slug} class={`w-full whatsapp__button ${slug}`}
-      >Ver en Whatsapp</button
+      ><FontAwesomeIcon icon={faWhatsapp} className="mr-2" />Whatsapp</button
     >
   </a>
 </div>
