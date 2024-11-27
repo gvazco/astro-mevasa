@@ -18,6 +18,7 @@ import ShieldIcon from "./ShieldIcon.astro";
 import WeightIcon from "./WeightIcon.astro";
 import WhatsappIcon from "./WhatsappIcon.astro";
 import WhatsappButton from "./WhatsappButton.astro";
+import PhoneButton from "./PhoneButton.astro";
 import SocialLink from "./SocialLink.astro";
 import PostSearch from "./PostSearch.astro";
 import CatalogSearch from "./CatalogSearch.astro";
@@ -216,6 +217,8 @@ function fixAccents(text: string): string {
             postId={postId}
           />
         );
+      case "astroestates/phone-button":
+        return <PhoneButton />;
       case "core/image":
         // console.log("IMAGE: ", block);
         return (

@@ -211,6 +211,31 @@
   text-transform: uppercase;
 }
 
+.phone {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 10px;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.phone__button {
+  border-width: 2px;
+  border-radius: 0px;
+  border-color: rgb(15, 23, 42);
+  background-color: rgb(203, 213, 225);
+  color: rgb(15, 23, 42);
+  padding: 0.6rem 0.5rem;
+  min-width: 1px;
+  font-family: "Inder", sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1.3px;
+  text-transform: uppercase;
+}
+
 .budget {
   display: -webkit-box;
   display: -ms-flexbox;
