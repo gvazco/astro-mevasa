@@ -1,6 +1,7 @@
 ---
 import BlockRenderer from "../components/BlockRenderer.astro";
 import CommonHead from "../components/CommonHead.astro";
+import SpeedInsights from "@vercel/speed-insights/astro";
 export const prerender = false;
 
 const { ssr } = Astro.params;
@@ -19,5 +20,6 @@ const { seo, blocks, databaseId } = data;
   <CommonHead title={seo.title || ""} description={seo.metaDesc || ""} />
   <body>
     <BlockRenderer blocks={blocks} postId={databaseId} />
+    <SpeedInsights />
   </body>
 </html>
