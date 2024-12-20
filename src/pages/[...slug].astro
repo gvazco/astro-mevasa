@@ -3,6 +3,7 @@ import BlockRenderer from "../components/BlockRenderer.astro";
 import type { Block } from "@wp-block-tools/styles";
 import CommonHead from "../components/CommonHead.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import Analytics from "@vercel/analytics/astro";
 
 export async function getStaticPaths() {
   const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
@@ -97,5 +98,6 @@ const postId = data.nodeByUri?.databaseId;
   <body>
     <BlockRenderer blocks={blocks} postId={postId} />
     <SpeedInsights />
+    <Analytics />
   </body>
 </html>

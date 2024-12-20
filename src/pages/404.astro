@@ -1,6 +1,7 @@
 ---
 import CommonHead from "../components/CommonHead.astro";
 import SpeedInsights from "@vercel/speed-insights/astro";
+import Analytics from "@vercel/analytics/astro";
 ---
 
 <html lang="en">
@@ -12,5 +13,6 @@ import SpeedInsights from "@vercel/speed-insights/astro";
       <a href="/" class="text-blast-off block py-3">Volver al Inicio</a>
     </div>
     <SpeedInsights />
+    <Analytics />
   </body>
 </html>
