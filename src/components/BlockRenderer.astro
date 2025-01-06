@@ -1,6 +1,7 @@
 ---
 import ContactForm7 from "./ContactForm7.tsx";
 import { BudgetButton } from "./BudgetButton.tsx";
+import { ProductGallery } from "./ProductGallery.tsx";
 import BlockRendererInner from "./BlockRenderer.astro";
 import Navigation from "./Navigation.astro";
 import Button from "./Button.astro";
@@ -40,8 +41,6 @@ type Props = {
   blocks: Block[];
 };
 const { blocks, postId } = Astro.props;
-
-// console.log(Astro.props);
 
 const replacements: { [key: string]: string } = {
   "Ã¡": "á",
@@ -91,6 +90,15 @@ function fixAccents(text: string): string {
         return <BriefcaseSearch />;
       case "astroestates/category-briefcase":
         return <CategoryBriefcase />;
+      case "astroestates/product-gallery":
+        console.log(block);
+        return (
+          <ProductGallery
+            client:only="react"
+            productgallery={block.attributes?.productgallery}
+            postId={postId}
+          />
+        );
       case "core/gallery":
         return (
           <div style={styles} class={joinClasses(classes, "galleryStyle")}>

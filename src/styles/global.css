@@ -274,7 +274,11 @@
 }
 
 .wpcf7-form {
-  @apply max-w-sm;
+  @apply max-w-md text-white;
+}
+
+.wpcf7-form p {
+  @apply mt-2;
 }
 
 .wpcf7-submit {
