@@ -87,7 +87,9 @@ const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   }),
 });
 const { data } = await response.json();
-// const { blocks, seo } = Astro.props;
+
+// console.log(data);
+// const { blocks, seo, productgallery } = Astro.props;
 const blocks = (data.nodeByUri?.blocks || []) as Block[];
 const seo = data.nodeByUri?.seo;
 const postId = data.nodeByUri?.databaseId;
@@ -97,7 +99,9 @@ const postId = data.nodeByUri?.databaseId;
   <CommonHead title={seo.title || ""} description={seo.metaDesc || ""} />
   <body>
     <BlockRenderer blocks={blocks} postId={postId} />
+
     <SpeedInsights />
+
     <Analytics />
   </body>
 </html>

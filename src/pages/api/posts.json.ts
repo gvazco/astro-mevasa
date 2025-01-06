@@ -25,6 +25,11 @@ export const GET: APIRoute = async () => {
                 uri
                 excerpt
                 content
+                productgallery {
+                    productgallery {
+                      sourceUrl
+                    }
+                  }
                 }
             }
         }
