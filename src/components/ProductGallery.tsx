@@ -19,18 +19,25 @@ type Props = {
 };
 
 export const ProductGallery = ({ productgallery, postId }: Props) => {
-  const slides = productgallery.map((product) => ({
-    src: product.url,
-    alt: product.alt,
-    width: product.width,
-    height: product.height,
-    title: product.title,
-    description: product.description,
-  }));
-
   const [open, setOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const thumbnailsRef = useRef(null);
+  const [slides, setSlides] = useState([]);
+
+  useEffect(() => {
+    if (productgallery.length > 0) {
+      const newSlides = productgallery.map((product) => ({
+        src: product.url,
+        alt: product.alt,
+        width: product.width,
+        height: product.height,
+        title: product.title,
+        description: product.description,
+      }));
+      // @ts-ignore
+      setSlides(newSlides);
+    }
+  }, [productgallery]);
 
   return (
     <div className="product-gallery-container">
