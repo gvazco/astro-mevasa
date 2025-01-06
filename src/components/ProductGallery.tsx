@@ -14,7 +14,7 @@ interface Product {
 }
 
 type Props = {
-  productgallery: Product[];
+  productgallery: Product[] | null | undefined;
   postId: number;
 };
 
@@ -25,7 +25,7 @@ export const ProductGallery = ({ productgallery, postId }: Props) => {
   const [slides, setSlides] = useState([]);
 
   useEffect(() => {
-    if (productgallery.length > 0) {
+    if (productgallery && productgallery.length > 0) {
       const newSlides = productgallery.map((product) => ({
         src: product.url,
         alt: product.alt,
@@ -38,6 +38,14 @@ export const ProductGallery = ({ productgallery, postId }: Props) => {
       setSlides(newSlides);
     }
   }, [productgallery]);
+
+  if (!productgallery || productgallery.length === 0) {
+    return (
+      <div>
+        La galería de imágenes no esta disponible, intente recargar el sitio.
+      </div>
+    );
+  }
 
   return (
     <div className="product-gallery-container">
