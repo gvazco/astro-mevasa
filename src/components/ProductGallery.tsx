@@ -19,6 +19,7 @@ type Props = {
 };
 
 export const ProductGallery = ({ productgallery, postId }: Props) => {
+  // console.log(productgallery);
   const [open, setOpen] = useState(false);
   const [photoIndex, setPhotoIndex] = useState(0);
   const thumbnailsRef = useRef(null);
