@@ -29,6 +29,7 @@ type Props = {
   title: string;
   description: string;
 };
+
 const response = await fetch(`${import.meta.env.WPGRAPHQL_URL}`, {
   method: "POST",
   headers: {
@@ -84,12 +85,26 @@ const { title, description } = Astro.props;
       };
     }
 
+    // Show spinner on first load
+    window.addEventListener("DOMContentLoaded", () => {
+      console.log("DOMContentLoaded event triggered");
+      const stopSpinner = startSpinner();
+      window.addEventListener("load", () => {
+        console.log("First load completed");
+        stopSpinner();
+      });
+    });
+
+    // Show spinner during view transitions
     document.addEventListener("astro:before-preparation", (ev) => {
+      console.log("astro:before-preparation event triggered");
       const originalLoader = ev.loader;
       ev.loader = async function () {
+        console.log("Custom loader started");
         const stop = startSpinner();
         await originalLoader();
         stop();
+        console.log("Custom loader stopped");
       };
     });
   </script>
