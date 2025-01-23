@@ -21,7 +21,7 @@ filteredPosts = filteredPosts.filter((post: any) => {
   return post.uri.includes(`${cleanedUrl}`);
 });
 
-const pageSize = 3;
+const pageSize = 4;
 const totalPages = Math.ceil(filteredPosts.length / pageSize);
 const pageNumber = page ? (isNaN(parseInt(page)) ? 1 : parseInt(page)) : 1;
 const offset = (pageNumber - 1) * pageSize;
