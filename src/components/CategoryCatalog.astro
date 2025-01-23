@@ -30,7 +30,7 @@ filteredPosts = filteredPosts.filter((post: any) => {
 //   });
 // }
 
-const pageSize = 3;
+const pageSize = 6;
 const totalPages = Math.ceil(filteredPosts.length / pageSize);
 const pageNumber = page ? (isNaN(parseInt(page)) ? 1 : parseInt(page)) : 1;
 const offset = (pageNumber - 1) * pageSize;

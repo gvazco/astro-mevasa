@@ -30,7 +30,7 @@ if (category) {
   });
 }
 
-const pageSize = 6;
+const pageSize = 9;
 const totalPages = Math.ceil(filteredPosts.length / pageSize);
 const pageNumber = page ? (isNaN(parseInt(page)) ? 1 : parseInt(page)) : 1;
 const offset = (pageNumber - 1) * pageSize;
